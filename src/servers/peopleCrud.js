@@ -30,3 +30,29 @@ export async function createPerson(person) {
 
     return response.json();
 }
+
+/*
+Função para atualizar pessoa
+*/
+export async function updatePerson(id, person) {
+
+    const response = await fetch(`${API_URL}/people/${id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(person)
+    });
+
+    return response.json();
+}
+
+/*
+Função para deletar pessoa
+*/
+export async function deletePerson(id) {
+
+    await fetch(`${API_URL}/people/${id}`, {
+        method: "DELETE"
+    });
+}
