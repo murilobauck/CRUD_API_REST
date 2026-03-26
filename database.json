@@ -4,7 +4,8 @@
       "id": 1,
       "firstName": "Rafael",
       "lastName": "Cruz",
-      "email": "rafael@email.com.br"
+      "email": "rafael@email.com.br",
+      "phone": "(11) 99999-9999"
     }
   ]
 }
