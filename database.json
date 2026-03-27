@@ -1,11 +1,19 @@
 {
   "people": [
     {
-      "id": 1,
-      "firstName": "Rafael",
-      "lastName": "Cruz",
-      "email": "rafael@email.com.br",
-      "phone": "(11) 99999-9999"
+      "firstName": "Murilo",
+      "lastName": "Bauck",
+      "email": "murilobauck2@gmail.br",
+      "phone": "19991501988",
+      "id": "81f7"
+    },
+    {
+      "id": "711e",
+      "firstName": "jshs",
+      "lastName": "ywyw",
+      "email": "ywywyw",
+      "phone": "gwgwyw"
     }
-  ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }

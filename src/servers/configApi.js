@@ -1,3 +1,3 @@
-export const API_URL = "https://heavy-breads-remain.loca.lt";
+export const API_URL = "https://med-seattle-ons-careers.trycloudflare.com";
 
 export default {};

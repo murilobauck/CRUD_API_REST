@@ -5,91 +5,91 @@ import styles from "../styles/styles";
 
 import { getPeople, deletePerson } from "../servers/peopleCrud";
 
-function CardPersonal({item, navigation, refresh}){
+function CardPersonal({ item, navigation, refresh }) {
 
-    return(
+  return (
 
-        <View style={styles.card}>
+    <View style={styles.card}>
 
-            <View>
+      <View>
 
-                <Text style={styles.name}>
-                    {item.firstName} {item.lastName}
-                </Text>
+        <Text style={styles.name}>
+          {item.firstName} {item.lastName}
+        </Text>
 
-                <Text style={styles.email}>
-                    {item.email}
-                </Text>
+        <Text style={styles.email}>
+          {item.email}
+        </Text>
 
-                <Text style={styles.phone}>
-                    {item.phone}
-                </Text>
+        <Text style={styles.phone}>
+          {item.phone}
+        </Text>
 
-            </View>
+      </View>
 
-            <View>
+      <View>
 
-                <Button
-                    title="Editar"
-                    onPress={()=> navigation.navigate("AddEdit", {person:item})}
-                />
+        <Button
+          title="Editar"
+          onPress={() => navigation.navigate("AddEdit", { person: item })}
+        />
 
-                <Button
-                    title="Deletar"
-                    onPress={async ()=>{
-                        await deletePerson(item.id);
-                        refresh();
-                    }}
-                />
+        <Button
+          title="Deletar"
+          onPress={async () => {
+            await deletePerson(item.id);
+            refresh();
+          }}
+        />
 
-            </View>
+      </View>
 
-        </View>
-    )
+    </View>
+  )
 }
 
 export default function HomeScreen({ navigation }) {
 
-    // estado da lista
-    const [people, setPeople] = useState([]);
+  // estado da lista
+  const [people, setPeople] = useState([]);
 
-    // função para carregar dados
-    async function loadPeople(){
+  // função para carregar dados
+  async function loadPeople() {
 
-        const data = await getPeople();
+    const data = await getPeople();
 
-        setPeople(data);
-    }
+    setPeople(data);
+  }
 
-    // executa ao abrir tela
-    useEffect(()=>{
-        loadPeople();
-    },[]);
+  // executa ao abrir tela
+  useEffect(() => {
+    loadPeople();
+  }, []);
 
-    return(
+  return (
 
-        <View style={styles.container}>
+    <View style={styles.container}>
 
-            <Text style={styles.title}>Pessoas</Text>
+      <Text style={styles.title}>Pessoas</Text>
 
-            <Button
-                title="Adicionar Pessoa"
-                onPress={()=> navigation.navigate("AddEdit")}
-            />
+      <Button
+        title="Adicionar Pessoa"
+        onPress={() => navigation.navigate("AddEdit")}
+      />
 
-            <FlatList
-                data={people}
-                keyExtractor={(item)=>item.id.toString()}
+      <FlatList
+        data={people}
+        keyExtractor={(item) => item.id.toString()}
 
-                renderItem={({item})=>(
-                    <CardPersonal
-                        item={item}
-                        navigation={navigation}
-                        refresh={loadPeople}
-                    />
-                )}
-            />
+        renderItem={({ item }) => (
+          <CardPersonal
+            item={item}
+            navigation={navigation}
+            refresh={loadPeople}
+          />
+        )}
+      />
 
-        </View>
-    );
+    </View>
+  );
 }
