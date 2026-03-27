@@ -16,7 +16,7 @@ export async function getPeople() {
 
     if (!response.ok) {
       console.log('Erro na chamada da API', response.status);
-      return [];
+      throw new Error("Erro na API");
     }
 
     // converte resposta para JSON
@@ -26,7 +26,7 @@ export async function getPeople() {
     return data;
   } catch (error) {
     console.log('Erro ao buscar dados:', error);
-    return [];
+    throw error;
   }
 }
 

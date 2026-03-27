@@ -60,12 +60,21 @@ export default function HomeScreen({ navigation }) {
   // estado de carregamento
   const [loading, setLoading] = useState(true);
 
+  // estado de erro
+  const [error, setError] = useState(null);
+
   // função para carregar dados
   async function loadPeople() {
     setLoading(true);
-    const data = await getPeople();
-    setPeople(data);
-    setLoading(false);
+    setError(null);
+    try {
+      const data = await getPeople();
+      setPeople(data);
+    } catch (err) {
+      setError("Não foi possível conectar com a API.");
+    } finally {
+      setLoading(false);
+    }
   }
 
 
@@ -100,9 +109,13 @@ export default function HomeScreen({ navigation }) {
         onPress={() => navigation.navigate("AddEdit")}
       />
 
-      {loading ? (
+      {error ? (
+        <Text style={{ color: "red", textAlign: "center", marginTop: 20 }}>{error}</Text>
+      ) : null}
+
+      {loading && !error ? (
         <ActivityIndicator size="large" color="#4CAF50" style={{ marginTop: 20 }} />
-      ) : (
+      ) : !loading && !error ? (
         <FlatList
           data={filteredPeople}
           keyExtractor={(item) => item.id.toString()}
@@ -114,7 +127,7 @@ export default function HomeScreen({ navigation }) {
             />
           )}
         />
-      )}
+      ) : null}
 
     </View>
   );
