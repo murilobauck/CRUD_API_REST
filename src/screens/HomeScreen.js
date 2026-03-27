@@ -65,12 +65,19 @@ export default function HomeScreen({ navigation }) {
     setPeople(data);
   }
 
+
   // executa sempre que a tela ganha foco
   useFocusEffect(
     useCallback(() => {
       loadPeople();
     }, [])
   );
+
+  // Filtra as pessoas com base na pesquisa (nome ou sobrenome)
+  const filteredPeople = people.filter(person => {
+    const fullName = `${person.firstName} ${person.lastName}`.toLowerCase();
+    return fullName.includes(searchQuery.toLowerCase());
+  });
 
   return (
 
@@ -91,7 +98,7 @@ export default function HomeScreen({ navigation }) {
       />
 
       <FlatList
-        data={people}
+        data={filteredPeople}
         keyExtractor={(item) => item.id.toString()}
 
         renderItem={({ item }) => (
