@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from "react";
-import { View, Text, FlatList, Button } from "react-native";
+import { View, Text, FlatList, Button, TextInput } from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
 
 import styles from "../styles/styles";
@@ -53,6 +53,9 @@ export default function HomeScreen({ navigation }) {
 
   // estado da lista
   const [people, setPeople] = useState([]);
+  
+  // estado da pesquisa
+  const [searchQuery, setSearchQuery] = useState("");
 
   // função para carregar dados
   async function loadPeople() {
@@ -74,6 +77,13 @@ export default function HomeScreen({ navigation }) {
     <View style={styles.container}>
 
       <Text style={styles.title}>Pessoas</Text>
+
+      <TextInput
+        style={styles.searchInput}
+        placeholder="Pesquisar por nome..."
+        value={searchQuery}
+        onChangeText={setSearchQuery}
+      />
 
       <Button
         title="Adicionar Pessoa"
