@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from "react";
-import { View, Text, FlatList, Button, TextInput } from "react-native";
+import { View, Text, FlatList, Button, TextInput, ActivityIndicator } from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
 
 import styles from "../styles/styles";
@@ -57,12 +57,15 @@ export default function HomeScreen({ navigation }) {
   // estado da pesquisa
   const [searchQuery, setSearchQuery] = useState("");
 
+  // estado de carregamento
+  const [loading, setLoading] = useState(true);
+
   // função para carregar dados
   async function loadPeople() {
-
+    setLoading(true);
     const data = await getPeople();
-
     setPeople(data);
+    setLoading(false);
   }
 
 
@@ -97,18 +100,21 @@ export default function HomeScreen({ navigation }) {
         onPress={() => navigation.navigate("AddEdit")}
       />
 
-      <FlatList
-        data={filteredPeople}
-        keyExtractor={(item) => item.id.toString()}
-
-        renderItem={({ item }) => (
-          <CardPersonal
-            item={item}
-            navigation={navigation}
-            refresh={loadPeople}
-          />
-        )}
-      />
+      {loading ? (
+        <ActivityIndicator size="large" color="#4CAF50" style={{ marginTop: 20 }} />
+      ) : (
+        <FlatList
+          data={filteredPeople}
+          keyExtractor={(item) => item.id.toString()}
+          renderItem={({ item }) => (
+            <CardPersonal
+              item={item}
+              navigation={navigation}
+              refresh={loadPeople}
+            />
+          )}
+        />
+      )}
 
     </View>
   );
