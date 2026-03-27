@@ -12,22 +12,33 @@ export default StyleSheet.create({
         marginBottom:20
     },
     card:{
-        flexDirection:"row",
-        justifyContent:"space-between",
+        flexDirection:"column",
         backgroundColor:"#fff",
-        padding:10,
+        padding:15,
         marginBottom:10,
-        borderRadius:5
+        borderRadius:5,
+        borderWidth: 2,
+        borderColor: "#000"
     },
     name:{
-        fontSize:14
+        fontSize:16,
+        fontWeight: "bold",
+        textAlign: "center",
+        marginBottom: 15
     },
-    email:{
-        fontSize:10
+    row: {
+        flexDirection: "row",
+        justifyContent: "space-between",
     },
-    phone:{
-        fontSize:10,
-        color:"#666"
+    column: {
+        flex: 1,
+        alignItems: "center",
+        marginHorizontal: 5
+    },
+    infoText: {
+        fontSize: 14,
+        marginBottom: 5,
+        textAlign: "center"
     },
     button:{
         padding:10,

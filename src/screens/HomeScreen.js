@@ -11,40 +11,31 @@ function CardPersonal({ item, navigation, refresh }) {
   return (
 
     <View style={styles.card}>
+      <Text style={styles.name}>
+        {item.firstName} {item.lastName}
+      </Text>
 
-      <View>
-
-        <Text style={styles.name}>
-          {item.firstName} {item.lastName}
-        </Text>
-
-        <Text style={styles.email}>
-          {item.email}
-        </Text>
-
-        <Text style={styles.phone}>
-          {item.phone}
-        </Text>
-
-      </View>
-
-      <View>
-
-        <Button
+      <View style={styles.row}>
+        <View style={styles.column}>
+          <Text style={styles.infoText}>{item.email}</Text>
+          <Button
           title="Editar"
-          onPress={() => navigation.navigate("AddEdit", { person: item })}
-        />
+            onPress={() => navigation.navigate("AddEdit", { person: item })}
+          />
+        </View>
 
-        <Button
-          title="Deletar"
-          onPress={async () => {
-            await deletePerson(item.id);
-            refresh();
-          }}
-        />
-
+        <View style={styles.column}>
+          <Text style={styles.infoText}>{item.phone}</Text>
+          <Button
+            title="Deletar"
+            color="red"
+            onPress={async () => {
+              await deletePerson(item.id);
+              refresh();
+            }}
+          />
+        </View>
       </View>
-
     </View>
   )
 }
