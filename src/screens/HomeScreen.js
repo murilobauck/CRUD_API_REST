@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from "react";
-import { View, Text, FlatList, Button, TextInput, ActivityIndicator, Alert } from "react-native";
+import { View, Text, FlatList, TextInput, ActivityIndicator, Alert, TouchableOpacity } from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
 
 import styles from "../styles/styles";
@@ -30,29 +30,39 @@ function CardPersonal({ item, navigation, refresh }) {
   };
 
   return (
-
     <View style={styles.card}>
       <Text style={styles.name}>
         {item.firstName} {item.lastName}
       </Text>
 
-      <View style={styles.row}>
-        <View style={styles.column}>
+      <View style={styles.infoContainer}>
+        <View style={styles.infoCol}>
+          <Text style={styles.infoLabel}>Email</Text>
           <Text style={styles.infoText}>{item.email}</Text>
-          <Button
-            title="Editar"
-            onPress={() => navigation.navigate("AddEdit", { person: item })}
-          />
         </View>
 
-        <View style={styles.column}>
+        <View style={styles.infoCol}>
+          <Text style={styles.infoLabel}>Telefone</Text>
           <Text style={styles.infoText}>{item.phone}</Text>
-          <Button
-            title="Deletar"
-            color="red"
-            onPress={confirmDelete}
-          />
         </View>
+      </View>
+
+      <View style={styles.divider} />
+
+      <View style={styles.actionRow}>
+        <TouchableOpacity 
+          style={[styles.actionButton, styles.editButton]} 
+          onPress={() => navigation.navigate("AddEdit", { person: item })}
+        >
+          <Text style={styles.editButtonText}>Editar</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity 
+          style={[styles.actionButton, styles.deleteButton]} 
+          onPress={confirmDelete}
+        >
+          <Text style={styles.deleteButtonText}>Excluir</Text>
+        </TouchableOpacity>
       </View>
     </View>
   )
@@ -60,19 +70,14 @@ function CardPersonal({ item, navigation, refresh }) {
 
 export default function HomeScreen({ navigation }) {
 
-  // estado da lista
   const [people, setPeople] = useState([]);
   
-  // estado da pesquisa
   const [searchQuery, setSearchQuery] = useState("");
 
-  // estado de carregamento
   const [loading, setLoading] = useState(true);
 
-  // estado de erro
   const [error, setError] = useState(null);
 
-  // função para carregar dados
   async function loadPeople() {
     setLoading(true);
     setError(null);
@@ -86,15 +91,12 @@ export default function HomeScreen({ navigation }) {
     }
   }
 
-
-  // executa sempre que a tela ganha foco
   useFocusEffect(
     useCallback(() => {
       loadPeople();
     }, [])
   );
 
-  // Filtra as pessoas com base na pesquisa (nome ou sobrenome)
   const filteredPeople = people.filter(person => {
     const fullName = `${person.firstName} ${person.lastName}`.toLowerCase();
     return fullName.includes(searchQuery.toLowerCase());
@@ -113,10 +115,12 @@ export default function HomeScreen({ navigation }) {
         onChangeText={setSearchQuery}
       />
 
-      <Button
-        title="Adicionar Pessoa"
+      <TouchableOpacity 
+        style={styles.addButton}
         onPress={() => navigation.navigate("AddEdit")}
-      />
+      >
+        <Text style={styles.addButtonText}>Adicionar Pessoa</Text>
+      </TouchableOpacity>
 
       {error ? (
         <Text style={{ color: "red", textAlign: "center", marginTop: 20 }}>{error}</Text>

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, TextInput, Button } from "react-native";
+import { View, TextInput, Text, TouchableOpacity } from "react-native";
 
 import styles from "../styles/styles";
 
@@ -32,43 +32,59 @@ export default function AddEditScreen({ route, navigation }) {
     }
 
     return(
-
         <View style={styles.container}>
+            <Text style={styles.title}>{person ? "Editar Contato" : "Novo Contato"}</Text>
 
-            <TextInput
-                placeholder="First Name"
-                value={firstName}
-                onChangeText={setFirstName}
-            />
+            <View>
+                <Text style={styles.formLabel}>Nome</Text>
+                <TextInput
+                    style={styles.input}
+                    placeholder="Ex: Murilo"
+                    placeholderTextColor="#9CA3AF"
+                    value={firstName}
+                    onChangeText={setFirstName}
+                />
 
-            <TextInput
-                placeholder="Last Name"
-                value={lastName}
-                onChangeText={setLastName}
-            />
+                <Text style={styles.formLabel}>Sobrenome</Text>
+                <TextInput
+                    style={styles.input}
+                    placeholder="Ex: Bauck"
+                    placeholderTextColor="#9CA3AF"
+                    value={lastName}
+                    onChangeText={setLastName}
+                />
 
-            <TextInput
-                placeholder="Email"
-                value={email}
-                onChangeText={setEmail}
-            />
+                <Text style={styles.formLabel}>E-mail</Text>
+                <TextInput
+                    style={styles.input}
+                    placeholder="Ex: nome@email.com"
+                    placeholderTextColor="#9CA3AF"
+                    keyboardType="email-address"
+                    autoCapitalize="none"
+                    value={email}
+                    onChangeText={setEmail}
+                />
 
-            <TextInput
-                placeholder="Phone"
-                value={phone}
-                onChangeText={setPhone}
-            />
+                <Text style={styles.formLabel}>Telefone</Text>
+                <TextInput
+                    style={styles.input}
+                    placeholder="Ex: (11) 99999-9999"
+                    placeholderTextColor="#9CA3AF"
+                    keyboardType="phone-pad"
+                    value={phone}
+                    onChangeText={setPhone}
+                />
+            </View>
 
-            <Button
-                title="Salvar"
-                onPress={save}
-            />
+            <View style={[styles.actionRow, { marginTop: 24 }]}>
+                <TouchableOpacity style={styles.cancelButton} onPress={() => navigation.goBack()}>
+                    <Text style={styles.cancelButtonText}>Cancelar</Text>
+                </TouchableOpacity>
 
-            <Button
-                title="Cancelar"
-                onPress={()=> navigation.goBack()}
-            />
-
+                <TouchableOpacity style={styles.saveButton} onPress={save}>
+                    <Text style={styles.saveButtonText}>Adicionar</Text>
+                </TouchableOpacity>
+            </View>
         </View>
     );
 }

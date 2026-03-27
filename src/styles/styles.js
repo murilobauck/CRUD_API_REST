@@ -1,57 +1,180 @@
 import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
-    container:{
-        flex:1,
-        padding:20,
-        backgroundColor:"#f5f5f5"
+    container: {
+        flex: 1,
+        paddingHorizontal: 20,
+        paddingTop: 40,
+        backgroundColor: "#F4F7FB"
     },
-    title:{
-        fontSize:22,
-        textAlign:"center",
-        marginBottom:20
+    title: {
+        fontSize: 28,
+        fontWeight: "800",
+        color: "#1F2937",
+        textAlign: "left",
+        marginBottom: 20,
+        letterSpacing: -0.5,
     },
-    card:{
-        flexDirection:"column",
-        backgroundColor:"#fff",
-        padding:15,
-        marginBottom:10,
-        borderRadius:5,
-        borderWidth: 2,
-        borderColor: "#000"
+    searchInput: {
+        height: 52,
+        backgroundColor: "#FFFFFF",
+        borderRadius: 12,
+        paddingHorizontal: 16,
+        marginBottom: 24,
+        fontSize: 16,
+        color: "#374151",
+        shadowColor: "#000",
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.05,
+        shadowRadius: 8,
+        elevation: 2,
     },
-    name:{
-        fontSize:16,
-        fontWeight: "bold",
-        textAlign: "center",
-        marginBottom: 15
+    addButton: {
+        backgroundColor: "#2563EB",
+        paddingVertical: 16,
+        borderRadius: 14,
+        alignItems: "center",
+        marginBottom: 24,
+        shadowColor: "#2563EB",
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.25,
+        shadowRadius: 10,
+        elevation: 5,
     },
-    row: {
+    addButtonText: {
+        color: "#FFFFFF",
+        fontSize: 16,
+        fontWeight: "700",
+        letterSpacing: 0.3,
+    },
+    card: {
+        flexDirection: "column",
+        backgroundColor: "#FFFFFF",
+        padding: 20,
+        marginBottom: 16,
+        borderRadius: 16,
+        shadowColor: "#000",
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.06,
+        shadowRadius: 12,
+        elevation: 3,
+    },
+    name: {
+        fontSize: 18,
+        fontWeight: "700",
+        color: "#111827",
+        marginBottom: 4,
+        textAlign: "center"
+    },
+    infoContainer: {
         flexDirection: "row",
         justifyContent: "space-between",
+        marginVertical: 16,
+        paddingHorizontal: 4,
     },
-    column: {
+    infoCol: {
         flex: 1,
         alignItems: "center",
-        marginHorizontal: 5
+    },
+    infoLabel: {
+        fontSize: 11,
+        color: "#9CA3AF",
+        textTransform: "uppercase",
+        letterSpacing: 0.5,
+        marginBottom: 4,
+        fontWeight: "600",
     },
     infoText: {
         fontSize: 14,
-        marginBottom: 5,
-        textAlign: "center"
+        color: "#4B5563",
+        fontWeight: "500",
     },
-    button:{
-        padding:10,
-        backgroundColor:"#4CAF50",
-        borderRadius:5
+    divider: {
+        height: 1,
+        backgroundColor: "#F3F4F6",
+        marginBottom: 16,
     },
-    searchInput: {
-        height: 40,
-        borderColor: '#ccc',
+    actionRow: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        gap: 12,
+        marginTop: 4,
+    },
+    actionButton: {
+        flex: 1,
+        paddingVertical: 12,
+        borderRadius: 10,
+        alignItems: "center",
+        justifyContent: "center",
+    },
+    editButton: {
+        backgroundColor: "#EEF2FF",
+    },
+    editButtonText: {
+        color: "#4F46E5",
+        fontWeight: "600",
+        fontSize: 14,
+    },
+    deleteButton: {
+        backgroundColor: "#FEF2F2",
+    },
+    deleteButtonText: {
+        color: "#EF4444",
+        fontWeight: "600",
+        fontSize: 14,
+    },
+    formLabel: {
+        fontSize: 14,
+        fontWeight: "600",
+        color: "#4B5563",
+        marginBottom: 8,
+        marginLeft: 4,
+    },
+    input: {
+        height: 52,
+        backgroundColor: "#FFFFFF",
+        borderRadius: 12,
+        paddingHorizontal: 16,
+        marginBottom: 20,
+        fontSize: 16,
+        color: "#1F2937",
         borderWidth: 1,
-        borderRadius: 5,
-        paddingHorizontal: 10,
-        marginBottom: 15,
-        backgroundColor: '#fff'
+        borderColor: "#E5E7EB",
+        shadowColor: "#000",
+        shadowOffset: { width: 0, height: 1 },
+        shadowOpacity: 0.02,
+        shadowRadius: 4,
+        elevation: 1,
+    },
+    saveButton: {
+        backgroundColor: "#2563EB",
+        paddingVertical: 16,
+        borderRadius: 14,
+        alignItems: "center",
+        shadowColor: "#2563EB",
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.25,
+        shadowRadius: 10,
+        elevation: 5,
+        flex: 1,
+    },
+    saveButtonText: {
+        color: "#FFFFFF",
+        fontSize: 16,
+        fontWeight: "700",
+    },
+    cancelButton: {
+        backgroundColor: "#FFFFFF",
+        paddingVertical: 16,
+        borderRadius: 14,
+        alignItems: "center",
+        borderWidth: 1,
+        borderColor: "#E5E7EB",
+        flex: 1,
+    },
+    cancelButtonText: {
+        color: "#4B5563",
+        fontSize: 16,
+        fontWeight: "700",
     }
 });
