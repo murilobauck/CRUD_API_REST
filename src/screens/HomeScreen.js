@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from "react";
-import { View, Text, FlatList, Button, TextInput, ActivityIndicator } from "react-native";
+import { View, Text, FlatList, Button, TextInput, ActivityIndicator, Alert } from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
 
 import styles from "../styles/styles";
@@ -7,6 +7,27 @@ import styles from "../styles/styles";
 import { getPeople, deletePerson } from "../servers/peopleCrud";
 
 function CardPersonal({ item, navigation, refresh }) {
+
+  const confirmDelete = () => {
+    Alert.alert(
+      "Confirmar exclusão",
+      "Tem certeza de que deseja excluir essa pessoa?",
+      [
+        {
+          text: "Cancelar",
+          style: "cancel"
+        },
+        {
+          text: "Excluir",
+          style: "destructive",
+          onPress: async () => {
+            await deletePerson(item.id);
+            refresh();
+          }
+        }
+      ]
+    );
+  };
 
   return (
 
@@ -19,7 +40,7 @@ function CardPersonal({ item, navigation, refresh }) {
         <View style={styles.column}>
           <Text style={styles.infoText}>{item.email}</Text>
           <Button
-          title="Editar"
+            title="Editar"
             onPress={() => navigation.navigate("AddEdit", { person: item })}
           />
         </View>
@@ -29,10 +50,7 @@ function CardPersonal({ item, navigation, refresh }) {
           <Button
             title="Deletar"
             color="red"
-            onPress={async () => {
-              await deletePerson(item.id);
-              refresh();
-            }}
+            onPress={confirmDelete}
           />
         </View>
       </View>
