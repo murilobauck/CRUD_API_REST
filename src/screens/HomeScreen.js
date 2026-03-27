@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useCallback } from "react";
 import { View, Text, FlatList, Button } from "react-native";
+import { useFocusEffect } from "@react-navigation/native";
 
 import styles from "../styles/styles";
 
@@ -61,10 +62,12 @@ export default function HomeScreen({ navigation }) {
     setPeople(data);
   }
 
-  // executa ao abrir tela
-  useEffect(() => {
-    loadPeople();
-  }, []);
+  // executa sempre que a tela ganha foco
+  useFocusEffect(
+    useCallback(() => {
+      loadPeople();
+    }, [])
+  );
 
   return (
 
